@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F8420652-D1DD-4A8B-A80A-B4360D4E8794}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{21DA044B-E64C-45FE-9B43-8897DF76A12B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{588510E2-BC89-4BB4-9C6D-F1FB61387EC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{53E63022-D37D-4E33-9E16-048847AF15C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DDA6D47B-5759-4F1E-852B-D144FCE91FB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Api", "src\API\WazenPolicy.Api\WazenPolicy.Api.csproj", "{45BF8C69-683A-4D97-B131-9E67BA082CA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Application", "src\Core\WazenPolicy.Application\WazenPolicy.Application.csproj", "{1255866A-8AD9-4867-89D7-A0BFA08BE1FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Domain", "src\Core\WazenPolicy.Domain\WazenPolicy.Domain.csproj", "{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Identity", "src\Infrastructure\WazenPolicy.Identity\WazenPolicy.Identity.csproj", "{14669F71-1CD9-407F-ACB6-FA72B01E9FE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Infrastructure", "src\Infrastructure\WazenPolicy.Infrastructure\WazenPolicy.Infrastructure.csproj", "{981726C8-8694-450B-94FC-D8E42D85F2EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Persistence", "src\Infrastructure\WazenPolicy.Persistence\WazenPolicy.Persistence.csproj", "{4E8FC676-0926-4FD8-A88F-F0F7F53672D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.API.IntegrationTests", "test\WazenPolicy.API.IntegrationTests\WazenPolicy.API.IntegrationTests.csproj", "{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Application.UnitTests", "test\WazenPolicy.Application.UnitTests\WazenPolicy.Application.UnitTests.csproj", "{DF691C9A-6E5E-4F13-83D9-866071548227}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WazenPolicy.Persistence.IntegrationTests", "test\WazenPolicy.Persistence.IntegrationTests\WazenPolicy.Persistence.IntegrationTests.csproj", "{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45BF8C69-683A-4D97-B131-9E67BA082CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45BF8C69-683A-4D97-B131-9E67BA082CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45BF8C69-683A-4D97-B131-9E67BA082CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45BF8C69-683A-4D97-B131-9E67BA082CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1255866A-8AD9-4867-89D7-A0BFA08BE1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1255866A-8AD9-4867-89D7-A0BFA08BE1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1255866A-8AD9-4867-89D7-A0BFA08BE1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1255866A-8AD9-4867-89D7-A0BFA08BE1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14669F71-1CD9-407F-ACB6-FA72B01E9FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14669F71-1CD9-407F-ACB6-FA72B01E9FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14669F71-1CD9-407F-ACB6-FA72B01E9FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14669F71-1CD9-407F-ACB6-FA72B01E9FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{981726C8-8694-450B-94FC-D8E42D85F2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981726C8-8694-450B-94FC-D8E42D85F2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{981726C8-8694-450B-94FC-D8E42D85F2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{981726C8-8694-450B-94FC-D8E42D85F2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8FC676-0926-4FD8-A88F-F0F7F53672D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8FC676-0926-4FD8-A88F-F0F7F53672D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8FC676-0926-4FD8-A88F-F0F7F53672D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8FC676-0926-4FD8-A88F-F0F7F53672D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF691C9A-6E5E-4F13-83D9-866071548227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF691C9A-6E5E-4F13-83D9-866071548227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF691C9A-6E5E-4F13-83D9-866071548227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF691C9A-6E5E-4F13-83D9-866071548227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21DA044B-E64C-45FE-9B43-8897DF76A12B} = {F8420652-D1DD-4A8B-A80A-B4360D4E8794}
+		{588510E2-BC89-4BB4-9C6D-F1FB61387EC2} = {F8420652-D1DD-4A8B-A80A-B4360D4E8794}
+		{53E63022-D37D-4E33-9E16-048847AF15C9} = {F8420652-D1DD-4A8B-A80A-B4360D4E8794}
+		{45BF8C69-683A-4D97-B131-9E67BA082CA9} = {21DA044B-E64C-45FE-9B43-8897DF76A12B}
+		{1255866A-8AD9-4867-89D7-A0BFA08BE1FE} = {588510E2-BC89-4BB4-9C6D-F1FB61387EC2}
+		{86A47BE4-3BAF-493C-B4B6-678C40C5D4CD} = {588510E2-BC89-4BB4-9C6D-F1FB61387EC2}
+		{14669F71-1CD9-407F-ACB6-FA72B01E9FE9} = {53E63022-D37D-4E33-9E16-048847AF15C9}
+		{981726C8-8694-450B-94FC-D8E42D85F2EB} = {53E63022-D37D-4E33-9E16-048847AF15C9}
+		{4E8FC676-0926-4FD8-A88F-F0F7F53672D8} = {53E63022-D37D-4E33-9E16-048847AF15C9}
+		{751FE1F9-465B-40D6-A3CA-7C2A09C6C76C} = {DDA6D47B-5759-4F1E-852B-D144FCE91FB6}
+		{DF691C9A-6E5E-4F13-83D9-866071548227} = {DDA6D47B-5759-4F1E-852B-D144FCE91FB6}
+		{05294DFA-B6D2-4B9A-8F3F-D9815AB8C583} = {DDA6D47B-5759-4F1E-852B-D144FCE91FB6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1AABC52-7EC4-4161-8BDC-D16D600F9740}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WazenTransactions.API.IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

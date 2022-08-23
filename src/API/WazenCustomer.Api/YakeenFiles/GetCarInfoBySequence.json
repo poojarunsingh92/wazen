@@ -1,0 +1,19 @@
+{
+  "logId": 123456,
+  "plateNumber": "AXV678",
+  "plateText1": "EBU",
+  "plateText2": "BER",
+  "plateText3": "BTY",
+  "plateTypeCode": "56272",
+  "vehicleMaker": "BMW",
+  "vehicleModel": "BMW X4",
+  "majorColor": "Orange",
+  "chassisNumber": "452432",
+  "modelYear": "2006",
+  "vehicleLoad": 123456,
+  "vehicleWeight": 123456,
+  "cylinders": "2",
+  "bodyType": "1",
+  "regExpiryDate": 123456,
+  "regplace": "4"
+}

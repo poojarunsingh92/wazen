@@ -1,0 +1,30 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
+WORKDIR /app
+EXPOSE 80
+
+RUN sed -i "s|MinProtocol = TLSv1.2|MinProtocol = TLSv1|g" /etc/ssl/openssl.cnf && \
+    sed -i 's|CipherString = DEFAULT@SECLEVEL=2|CipherString = DEFAULT@SECLEVEL=1|g' /etc/ssl/openssl.cnf
+
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /src
+COPY ["src/API/WazenIdentity.Api/WazenIdentity.Api.csproj", "src/API/WazenIdentity.Api/"]
+COPY ["src/Infrastructure/WazenIdentity.Persistence/WazenIdentity.Persistence.csproj", "src/Infrastructure/WazenIdentity.Persistence/"]
+COPY ["src/Core/WazenIdentity.Application/WazenIdentity.Application.csproj", "src/Core/WazenIdentity.Application/"]
+COPY ["src/Core/WazenIdentity.Domain/WazenIdentity.Domain.csproj", "src/Core/WazenIdentity.Domain/"]
+COPY ["src/Infrastructure/WazenIdentity.Identity/WazenIdentity.Identity.csproj", "src/Infrastructure/WazenIdentity.Identity/"]
+COPY ["src/Infrastructure/WazenIdentity.Infrastructure/WazenIdentity.Infrastructure.csproj", "src/Infrastructure/WazenIdentity.Infrastructure/"]
+RUN dotnet restore "src/API/WazenIdentity.Api/WazenIdentity.Api.csproj"
+COPY . .
+WORKDIR "/src/src/API/WazenIdentity.Api"
+RUN dotnet build "WazenIdentity.Api.csproj" -c Release -o /app/build
+#RUN sed -i 's/DEFAULT@SECLEVEL=2/DEFAULT@SECLEVEL=1/g' /etc/ssl/openssl.cnf
+
+FROM build AS publish
+RUN dotnet publish "WazenIdentity.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "WazenIdentity.Api.dll"]

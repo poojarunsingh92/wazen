@@ -1,0 +1,58 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: wazen-identity
+  labels:
+    app: identity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: identity
+    spec:
+      containers:
+        - name: identity
+          image: wazen.azurecr.io/wazenidentity:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          env:
+            - name: ConnectionString__ApplicationConnectionString
+              value: "Server=20.233.38.75,1802;Database=WazenIdentity;User ID=wazenidentity;Password=wazenidentity@123;Trusted_Connection=True;TrustServerCertificate=False;Encrypt=True;MultiSubnetFailover=True"
+            - name: ConnectionString__IdentityConnectionString
+              value: "Server=20.233.38.75,1802;Database=WazenIdentity;User ID=wazenidentity;Password=wazenidentity@123;Trusted_Connection=True;TrustServerCertificate=False;Encrypt=True;MultiSubnetFailover=True"
+            - name: ConnectionString__HealthCheckConnectionString
+              value: "Server=20.233.38.75,1802;Database=WazenIdentity;User ID=wazenidentity;Password=wazenidentity@123;Trusted_Connection=True;TrustServerCertificate=False;Encrypt=True;MultiSubnetFailover=True"
+            - name: ConnectionString__KeyValue
+              value: "MAKV2SPBNI99212"
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      imagePullSecrets:
+        - name: wazen-acr-secret
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+spec:
+  selector:
+    app: identity
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

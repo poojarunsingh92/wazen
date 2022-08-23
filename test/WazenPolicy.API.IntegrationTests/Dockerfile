@@ -1,0 +1,26 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/runtime:3.1 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /src
+COPY ["test/WazenPolicy.API.IntegrationTests/WazenPolicy.API.IntegrationTests.csproj", "test/WazenPolicy.API.IntegrationTests/"]
+COPY ["src/Infrastructure/WazenPolicy.Persistence/WazenPolicy.Persistence.csproj", "src/Infrastructure/WazenPolicy.Persistence/"]
+COPY ["src/Core/WazenPolicy.Application/WazenPolicy.Application.csproj", "src/Core/WazenPolicy.Application/"]
+COPY ["src/Core/WazenPolicy.Domain/WazenPolicy.Domain.csproj", "src/Core/WazenPolicy.Domain/"]
+COPY ["src/API/WazenPolicy.Api/WazenPolicy.Api.csproj", "src/API/WazenPolicy.Api/"]
+COPY ["src/Infrastructure/WazenPolicy.Infrastructure/WazenPolicy.Infrastructure.csproj", "src/Infrastructure/WazenPolicy.Infrastructure/"]
+COPY ["src/Infrastructure/WazenPolicy.Identity/WazenPolicy.Identity.csproj", "src/Infrastructure/WazenPolicy.Identity/"]
+RUN dotnet restore "test/WazenPolicy.API.IntegrationTests/WazenPolicy.API.IntegrationTests.csproj"
+COPY . .
+WORKDIR "/src/test/WazenPolicy.API.IntegrationTests"
+RUN dotnet build "WazenPolicy.API.IntegrationTests.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "WazenPolicy.API.IntegrationTests.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "WazenPolicy.API.IntegrationTests.dll"]

@@ -1,0 +1,32 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/runtime:3.1 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /src
+COPY ["test/WazenCustomer.API.IntegrationTests/WazenCustomer.API.IntegrationTests.csproj", "test/WazenCustomer.API.IntegrationTests/"]
+COPY ["src/Infrastructure/WazenCustomer.Persistence/WazenCustomer.Persistence.csproj", "src/Infrastructure/WazenCustomer.Persistence/"]
+COPY ["src/Core/WazenCustomer.Application/WazenCustomer.Application.csproj", "src/Core/WazenCustomer.Application/"]
+COPY ["src/Core/WazenCustomer.Domain/WazenCustomer.Domain.csproj", "src/Core/WazenCustomer.Domain/"]
+COPY ["src/API/WazenCustomer.Api/WazenCustomer.Api.csproj", "src/API/WazenCustomer.Api/"]
+COPY ["src/Infrastructure/WazenCustomer.Infrastructure/WazenCustomer.Infrastructure.csproj", "src/Infrastructure/WazenCustomer.Infrastructure/"]
+COPY ["src/Infrastructure/WazenCustomer.Identity/WazenCustomer.Identity.csproj", "src/Infrastructure/WazenCustomer.Identity/"]
+RUN dotnet restore "test/WazenCustomer.API.IntegrationTests/WazenCustomer.API.IntegrationTests.csproj"
+COPY . .
+WORKDIR "/src/test/WazenCustomer.API.IntegrationTests"
+RUN dotnet build "WazenCustomer.API.IntegrationTests.csproj" -c Release -o /app/build
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /wait
+RUN chmod +x /wait
+
+# Wait for sql server and then migrate the db and run tests
+CMD /wait && dotnet ef database update --context MyDbContext && dotnet test --no-build
+
+FROM build AS publish
+RUN dotnet publish "WazenCustomer.API.IntegrationTests.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "WazenCustomer.API.IntegrationTests.dll"]
